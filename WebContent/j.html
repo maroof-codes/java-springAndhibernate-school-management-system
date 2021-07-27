@@ -1,0 +1,46 @@
+<script>
+function checkname()
+{
+ var batchNumber=document.getElementById( "Batch_no" ).value;
+	
+ if(batchNumber)
+ {
+  $.ajax({
+  type: 'post',
+  url: '/TMS/batch/getBatchNumerByID/',
+  data: {
+   Batch_no : batchNumber,
+  },
+  success: function (response) {
+   $( '#batchNo_status' ).html(response);
+   if(response=="OK")	
+   {
+    return true;	
+   }
+   else
+   {
+    return false;	
+   }
+  }
+  });
+ }
+ else
+ {
+  $( '#batchNo_status' ).html("");
+  return false;
+ }
+}
+
+function checkall()
+{
+ var batchHtml=document.getElementById("batchNo_status").innerHTML;
+ if((batchHtml == "OK")
+ {
+  return true;
+ }
+ else
+ {
+  return false;
+ }
+}
+</script>
